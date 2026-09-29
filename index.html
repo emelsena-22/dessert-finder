@@ -1,0 +1,2701 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Sweet Kitchen | Find Desserts From Your Ingredients</title>
+
+<style>
+
+/* =========================
+   GENERAL
+========================= */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #fff8f5;
+    color: #3d2b2b;
+    line-height: 1.6;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+header {
+
+    background:
+        linear-gradient(
+            rgba(103, 42, 57, 0.80),
+            rgba(103, 42, 57, 0.80)
+        ),
+        linear-gradient(
+            135deg,
+            #f8b4c4,
+            #ffd6a5
+        );
+
+    color: white;
+    text-align: center;
+    padding: 70px 20px;
+
+}
+
+header .emoji {
+
+    font-size: 60px;
+    margin-bottom: 15px;
+
+}
+
+header h1 {
+
+    font-size: 3rem;
+    margin-bottom: 12px;
+
+}
+
+header p {
+
+    font-size: 1.2rem;
+    max-width: 750px;
+    margin: auto;
+
+}
+
+
+/* =========================
+   MAIN CONTAINER
+========================= */
+
+.container {
+
+    max-width: 1200px;
+    margin: auto;
+    padding: 35px 20px;
+
+}
+
+
+/* =========================
+   SEARCH BOX
+========================= */
+
+.search-box {
+
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 8px 30px rgba(80, 30, 40, 0.08);
+    margin-bottom: 35px;
+
+}
+
+.search-box h2 {
+
+    color: #8d4054;
+    margin-bottom: 10px;
+
+}
+
+.search-description {
+
+    color: #777;
+    margin-bottom: 18px;
+
+}
+
+textarea {
+
+    width: 100%;
+    min-height: 110px;
+    padding: 16px;
+
+    border:
+        2px solid #ead5da;
+
+    border-radius: 12px;
+
+    font-size: 16px;
+
+    resize: vertical;
+
+    font-family: inherit;
+
+}
+
+textarea:focus {
+
+    outline: none;
+
+    border-color: #c45b77;
+
+}
+
+
+/* =========================
+   BUTTONS
+========================= */
+
+.search-options {
+
+    margin-top: 15px;
+
+    display: flex;
+
+    gap: 10px;
+
+    flex-wrap: wrap;
+
+}
+
+button {
+
+    border: none;
+
+    border-radius: 10px;
+
+    padding: 13px 22px;
+
+    font-size: 16px;
+
+    cursor: pointer;
+
+    font-weight: bold;
+
+    transition: 0.2s;
+
+}
+
+.search-btn {
+
+    background: #a94f68;
+
+    color: white;
+
+}
+
+.search-btn:hover {
+
+    background: #873d52;
+
+    transform: translateY(-2px);
+
+}
+
+.clear-btn {
+
+    background: #eee1e5;
+
+    color: #5d3b43;
+
+}
+
+.clear-btn:hover {
+
+    background: #e3d2d7;
+
+}
+
+
+/* =========================
+   CHECKBOX
+========================= */
+
+.checkbox-area {
+
+    margin-top: 18px;
+
+    color: #555;
+
+}
+
+.checkbox-area input {
+
+    margin-right: 8px;
+
+}
+
+
+/* =========================
+   CATEGORY MENU
+========================= */
+
+.category-menu {
+
+    display: flex;
+
+    gap: 10px;
+
+    overflow-x: auto;
+
+    padding-bottom: 12px;
+
+    margin-bottom: 30px;
+
+}
+
+.category-btn {
+
+    background: white;
+
+    border:
+        1px solid #ead5da;
+
+    color: #7c3c4f;
+
+    white-space: nowrap;
+
+}
+
+.category-btn:hover,
+.category-btn.active {
+
+    background: #a94f68;
+
+    color: white;
+
+}
+
+
+/* =========================
+   RESULTS HEADER
+========================= */
+
+.results-header {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 20px;
+
+    margin-bottom: 20px;
+
+    flex-wrap: wrap;
+
+}
+
+.results-header h2 {
+
+    color: #6d3446;
+
+}
+
+.recipe-count {
+
+    color: #888;
+
+}
+
+
+/* =========================
+   RECIPE GRID
+========================= */
+
+.recipe-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            auto-fit,
+            minmax(300px, 1fr)
+        );
+
+    gap: 25px;
+
+}
+
+
+/* =========================
+   RECIPE CARD
+========================= */
+
+.recipe-card {
+
+    background: white;
+
+    border-radius: 18px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 6px 25px
+        rgba(80, 30, 40, 0.08);
+
+    transition: 0.25s;
+
+}
+
+.recipe-card:hover {
+
+    transform:
+        translateY(-6px);
+
+    box-shadow:
+        0 12px 30px
+        rgba(80, 30, 40, 0.14);
+
+}
+
+.recipe-image {
+
+    height: 170px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ffd6e0,
+            #ffe7c2
+        );
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 75px;
+
+}
+
+.recipe-content {
+
+    padding: 22px;
+
+}
+
+.recipe-content h3 {
+
+    color: #843e53;
+
+    font-size: 1.35rem;
+
+    margin-bottom: 8px;
+
+}
+
+.category-label {
+
+    display: inline-block;
+
+    background: #f8e6eb;
+
+    color: #91455d;
+
+    padding:
+        5px 10px;
+
+    border-radius: 20px;
+
+    font-size: 12px;
+
+    margin-bottom: 10px;
+
+}
+
+.match {
+
+    display: inline-block;
+
+    background: #e2f5e9;
+
+    color: #287348;
+
+    padding:
+        6px 10px;
+
+    border-radius: 20px;
+
+    font-size: 13px;
+
+    margin-bottom: 12px;
+
+}
+
+.missing {
+
+    display: inline-block;
+
+    background: #fff0e8;
+
+    color: #a3542e;
+
+    padding:
+        6px 10px;
+
+    border-radius: 20px;
+
+    font-size: 13px;
+
+    margin-bottom: 12px;
+
+}
+
+.recipe-content h4 {
+
+    color: #56343c;
+
+    margin-top: 12px;
+
+    margin-bottom: 6px;
+
+}
+
+.recipe-content ul,
+.recipe-content ol {
+
+    padding-left: 20px;
+
+}
+
+.recipe-content li {
+
+    margin-bottom: 4px;
+
+    color: #555;
+
+}
+
+
+/* =========================
+   EMPTY RESULTS
+========================= */
+
+.empty {
+
+    background: white;
+
+    padding: 45px;
+
+    text-align: center;
+
+    border-radius: 18px;
+
+    color: #777;
+
+}
+
+.empty .big {
+
+    font-size: 60px;
+
+    margin-bottom: 15px;
+
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+
+    margin-top: 60px;
+
+    background: #542d38;
+
+    color: white;
+
+    text-align: center;
+
+    padding: 35px 20px;
+
+}
+
+footer p {
+
+    margin-bottom: 6px;
+
+}
+
+.footer-small {
+
+    color: #d9bcc4;
+
+    font-size: 14px;
+
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 650px) {
+
+    header {
+
+        padding: 50px 15px;
+
+    }
+
+    header h1 {
+
+        font-size: 2.1rem;
+
+    }
+
+    header p {
+
+        font-size: 1rem;
+
+    }
+
+    .container {
+
+        padding: 25px 12px;
+
+    }
+
+    .search-box {
+
+        padding: 20px;
+
+    }
+
+    .recipe-grid {
+
+        grid-template-columns: 1fr;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<header>
+
+    <div class="emoji">
+        🍰
+    </div>
+
+    <h1>
+        Sweet Kitchen
+    </h1>
+
+    <p>
+        Enter the ingredients you have at home
+        and discover delicious desserts you can make.
+    </p>
+
+</header>
+
+
+<main class="container">
+
+
+<!-- =========================
+     INGREDIENT SEARCH
+========================= -->
+
+<section class="search-box">
+
+    <h2>
+        🍓 What's in Your Kitchen?
+    </h2>
+
+    <p class="search-description">
+
+        Enter the ingredients you have,
+        separated by commas.
+
+        <br>
+
+        Example:
+        <strong>
+            eggs, milk, flour, sugar, cocoa
+        </strong>
+
+    </p>
+
+
+    <textarea
+        id="ingredientInput"
+        placeholder="Example: eggs, milk, flour, sugar, chocolate..."
+    ></textarea>
+
+
+    <div class="search-options">
+
+        <button
+            class="search-btn"
+            onclick="findDesserts()"
+        >
+
+            🍰 Find My Desserts
+
+        </button>
+
+
+        <button
+            class="clear-btn"
+            onclick="clearSearch()"
+        >
+
+            Clear
+
+        </button>
+
+    </div>
+
+
+    <div class="checkbox-area">
+
+        <label>
+
+            <input
+                type="checkbox"
+                id="onlyComplete"
+            >
+
+            Show only desserts I can make with
+            the ingredients I already have
+
+        </label>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     CATEGORIES
+========================= -->
+
+<div class="category-menu">
+
+
+    <button
+        class="category-btn active"
+        onclick="filterCategory('All', this)"
+    >
+
+        🍰 All Desserts
+
+    </button>
+
+
+    <button
+        class="category-btn"
+        onclick="filterCategory('Turkish Desserts', this)"
+    >
+
+        🇹🇷 Turkish Desserts
+
+    </button>
+
+
+    <button
+        class="category-btn"
+        onclick="filterCategory('Cakes', this)"
+    >
+
+        🍰 Cakes
+
+    </button>
+
+
+    <button
+        class="category-btn"
+        onclick="filterCategory('Cookies', this)"
+    >
+
+        🍪 Cookies
+
+    </button>
+
+
+    <button
+        class="category-btn"
+        onclick="filterCategory('Milk Desserts', this)"
+    >
+
+        🥛 Milk Desserts
+
+    </button>
+
+
+    <button
+        class="category-btn"
+        onclick="filterCategory('Chocolate Desserts', this)"
+    >
+
+        🍫 Chocolate
+
+    </button>
+
+
+    <button
+        class="category-btn"
+        onclick="filterCategory('International Desserts', this)"
+    >
+
+        🌎 International
+
+    </button>
+
+</div>
+
+
+
+<!-- =========================
+     RESULTS
+========================= -->
+
+<div class="results-header">
+
+    <h2 id="resultsTitle">
+
+        🍰 Dessert Menu
+
+    </h2>
+
+
+    <div
+        id="recipeCount"
+        class="recipe-count"
+    >
+
+        50 desserts
+
+    </div>
+
+</div>
+
+
+<div
+    id="results"
+    class="recipe-grid"
+></div>
+
+
+</main>
+
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+    <p>
+        🍰 Sweet Kitchen
+    </p>
+
+    <p class="footer-small">
+        Discover delicious desserts using
+        the ingredients you already have.
+    </p>
+
+</footer>
+
+
+
+<script>
+
+
+/* ======================================================
+   DESSERT DATABASE
+====================================================== */
+
+const desserts = [
+
+
+/* 1 */
+
+{
+    name: "Rice Pudding",
+    category: "Turkish Desserts",
+    emoji: "🍚",
+
+    ingredients: [
+        "rice",
+        "milk",
+        "sugar",
+        "vanilla",
+        "cinnamon"
+    ],
+
+    steps: [
+        "Wash the rice and cook it until soft.",
+        "Add the milk and bring to a gentle boil.",
+        "Add sugar and vanilla.",
+        "Cook until the mixture becomes creamy.",
+        "Pour into bowls and sprinkle with cinnamon."
+    ]
+},
+
+
+/* 2 */
+
+{
+    name: "Baked Rice Pudding",
+    category: "Turkish Desserts",
+    emoji: "🍮",
+
+    ingredients: [
+        "rice",
+        "milk",
+        "sugar",
+        "egg yolk",
+        "vanilla"
+    ],
+
+    steps: [
+        "Cook the rice until soft.",
+        "Add milk and sugar.",
+        "Add vanilla.",
+        "Mix in the egg yolk.",
+        "Pour into oven-safe bowls.",
+        "Bake until the tops become golden."
+    ]
+},
+
+
+/* 3 */
+
+{
+    name: "Baklava",
+    category: "Turkish Desserts",
+    emoji: "🥮",
+
+    ingredients: [
+        "phyllo pastry",
+        "walnuts",
+        "butter",
+        "sugar",
+        "water",
+        "lemon"
+    ],
+
+    steps: [
+        "Layer the phyllo pastry and brush each layer with melted butter.",
+        "Add chopped walnuts between the layers.",
+        "Cut the baklava into pieces.",
+        "Pour melted butter over the top.",
+        "Bake until golden brown.",
+        "Prepare the syrup and pour it over the hot baklava."
+    ]
+},
+
+
+/* 4 */
+
+{
+    name: "Revani",
+    category: "Turkish Desserts",
+    emoji: "🍰",
+
+    ingredients: [
+        "semolina",
+        "eggs",
+        "sugar",
+        "yogurt",
+        "flour",
+        "baking powder",
+        "lemon"
+    ],
+
+    steps: [
+        "Beat the eggs and sugar.",
+        "Add yogurt and semolina.",
+        "Add flour and baking powder.",
+        "Pour into a baking dish.",
+        "Bake until golden.",
+        "Prepare lemon syrup and pour it over the cake."
+    ]
+},
+
+
+/* 5 */
+
+{
+    name: "Sekerpare",
+    category: "Turkish Desserts",
+    emoji: "🍪",
+
+    ingredients: [
+        "flour",
+        "semolina",
+        "butter",
+        "egg",
+        "sugar",
+        "baking powder",
+        "lemon"
+    ],
+
+    steps: [
+        "Mix the butter and sugar.",
+        "Add the egg.",
+        "Add semolina and flour.",
+        "Shape the dough into small pieces.",
+        "Bake until golden.",
+        "Pour prepared syrup over the hot cookies."
+    ]
+},
+
+
+/* 6 */
+
+{
+    name: "Tres Leches Cake",
+    category: "Milk Desserts",
+    emoji: "🍰",
+
+    ingredients: [
+        "eggs",
+        "sugar",
+        "flour",
+        "milk",
+        "cream",
+        "condensed milk",
+        "caramel"
+    ],
+
+    steps: [
+        "Beat eggs and sugar.",
+        "Add flour.",
+        "Bake the sponge cake.",
+        "Prepare the milk mixture.",
+        "Pour the milk mixture over the cake.",
+        "Top with caramel sauce."
+    ]
+},
+
+
+/* 7 */
+
+{
+    name: "Kazandibi",
+    category: "Turkish Desserts",
+    emoji: "🥛",
+
+    ingredients: [
+        "milk",
+        "sugar",
+        "rice flour",
+        "cornstarch",
+        "butter",
+        "vanilla"
+    ],
+
+    steps: [
+        "Mix milk, sugar, rice flour and cornstarch.",
+        "Cook until thick.",
+        "Butter a baking tray.",
+        "Spread the mixture over the tray.",
+        "Cook the bottom until caramelized.",
+        "Roll and serve."
+    ]
+},
+
+
+/* 8 */
+
+{
+    name: "Strawberry Magnolia",
+    category: "Milk Desserts",
+    emoji: "🍓",
+
+    ingredients: [
+        "milk",
+        "sugar",
+        "flour",
+        "cornstarch",
+        "strawberries",
+        "biscuits",
+        "vanilla"
+    ],
+
+    steps: [
+        "Cook milk, sugar, flour and cornstarch.",
+        "Add vanilla.",
+        "Crush the biscuits.",
+        "Slice the strawberries.",
+        "Layer biscuits, cream and strawberries in glasses.",
+        "Chill before serving."
+    ]
+},
+
+
+/* 9 */
+
+{
+    name: "Profiteroles",
+    category: "Chocolate Desserts",
+    emoji: "🍫",
+
+    ingredients: [
+        "flour",
+        "eggs",
+        "butter",
+        "water",
+        "milk",
+        "sugar",
+        "chocolate"
+    ],
+
+    steps: [
+        "Boil water and butter.",
+        "Add flour and mix.",
+        "Add the eggs.",
+        "Pipe small portions onto a baking tray.",
+        "Bake until puffed.",
+        "Fill with cream.",
+        "Cover with chocolate sauce."
+    ]
+},
+
+
+/* 10 */
+
+{
+    name: "Chocolate Cake",
+    category: "Cakes",
+    emoji: "🍫",
+
+    ingredients: [
+        "flour",
+        "eggs",
+        "sugar",
+        "milk",
+        "cocoa powder",
+        "vegetable oil",
+        "baking powder"
+    ],
+
+    steps: [
+        "Beat eggs and sugar.",
+        "Add milk and vegetable oil.",
+        "Add cocoa powder.",
+        "Add flour and baking powder.",
+        "Pour into a cake pan.",
+        "Bake until cooked through."
+    ]
+},
+
+
+/* 11 */
+
+{
+    name: "Chocolate Lava Cake",
+    category: "Chocolate Desserts",
+    emoji: "🍫",
+
+    ingredients: [
+        "dark chocolate",
+        "butter",
+        "eggs",
+        "sugar",
+        "flour"
+    ],
+
+    steps: [
+        "Melt the chocolate and butter.",
+        "Beat the eggs and sugar.",
+        "Mix in the chocolate.",
+        "Add flour.",
+        "Pour into small ramekins.",
+        "Bake briefly at high heat."
+    ]
+},
+
+
+/* 12 */
+
+{
+    name: "Brownies",
+    category: "Chocolate Desserts",
+    emoji: "🍫",
+
+    ingredients: [
+        "chocolate",
+        "butter",
+        "eggs",
+        "sugar",
+        "flour",
+        "cocoa powder"
+    ],
+
+    steps: [
+        "Melt chocolate and butter.",
+        "Beat eggs and sugar.",
+        "Add the melted chocolate.",
+        "Add flour and cocoa powder.",
+        "Pour into a baking pan.",
+        "Bake until the center is slightly soft."
+    ]
+},
+
+
+/* 13 */
+
+{
+    name: "Chocolate Chip Cookies",
+    category: "Cookies",
+    emoji: "🍪",
+
+    ingredients: [
+        "flour",
+        "butter",
+        "sugar",
+        "egg",
+        "chocolate chips",
+        "baking soda"
+    ],
+
+    steps: [
+        "Cream butter and sugar.",
+        "Add the egg.",
+        "Add flour and baking soda.",
+        "Mix in chocolate chips.",
+        "Shape the cookies.",
+        "Bake until golden around the edges."
+    ]
+},
+
+
+/* 14 */
+
+{
+    name: "Shortbread Cookies",
+    category: "Cookies",
+    emoji: "🍪",
+
+    ingredients: [
+        "flour",
+        "butter",
+        "powdered sugar",
+        "cornstarch"
+    ],
+
+    steps: [
+        "Soften the butter.",
+        "Add powdered sugar.",
+        "Add cornstarch and flour.",
+        "Mix into a soft dough.",
+        "Shape the cookies.",
+        "Bake at a low temperature."
+    ]
+},
+
+
+/* 15 */
+
+{
+    name: "Apple Cookies",
+    category: "Cookies",
+    emoji: "🍎",
+
+    ingredients: [
+        "flour",
+        "butter",
+        "apple",
+        "sugar",
+        "cinnamon",
+        "walnuts"
+    ],
+
+    steps: [
+        "Cook diced apples with sugar and cinnamon.",
+        "Prepare the dough with flour and butter.",
+        "Roll out the dough.",
+        "Add the apple filling.",
+        "Shape the cookies.",
+        "Bake until golden."
+    ]
+},
+
+
+/* 16 */
+
+{
+    name: "Walnut Cookies",
+    category: "Cookies",
+    emoji: "🌰",
+
+    ingredients: [
+        "flour",
+        "butter",
+        "sugar",
+        "egg",
+        "walnuts",
+        "baking powder"
+    ],
+
+    steps: [
+        "Mix butter and sugar.",
+        "Add the egg.",
+        "Add flour and baking powder.",
+        "Add chopped walnuts.",
+        "Shape the cookies.",
+        "Bake until golden."
+    ]
+},
+
+
+/* 17 */
+
+{
+    name: "Cocoa Cookies",
+    category: "Cookies",
+    emoji: "🍪",
+
+    ingredients: [
+        "flour",
+        "butter",
+        "sugar",
+        "egg",
+        "cocoa powder",
+        "baking powder"
+    ],
+
+    steps: [
+        "Mix butter and sugar.",
+        "Add the egg.",
+        "Add cocoa powder.",
+        "Add flour and baking powder.",
+        "Shape the cookies.",
+        "Bake until ready."
+    ]
+},
+
+
+/* 18 */
+
+{
+    name: "Cheesecake",
+    category: "International Desserts",
+    emoji: "🍰",
+
+    ingredients: [
+        "biscuits",
+        "butter",
+        "cream cheese",
+        "sugar",
+        "eggs",
+        "cream",
+        "vanilla"
+    ],
+
+    steps: [
+        "Crush the biscuits.",
+        "Mix them with melted butter.",
+        "Press the mixture into a cake pan.",
+        "Mix cream cheese, sugar, eggs and cream.",
+        "Pour over the biscuit base.",
+        "Bake and chill before serving."
+    ]
+},
+
+
+/* 19 */
+
+{
+    name: "Chocolate Cheesecake",
+    category: "Chocolate Desserts",
+    emoji: "🍫",
+
+    ingredients: [
+        "biscuits",
+        "butter",
+        "cream cheese",
+        "chocolate",
+        "sugar",
+        "eggs",
+        "cream"
+    ],
+
+    steps: [
+        "Prepare the biscuit base.",
+        "Melt the chocolate.",
+        "Mix cream cheese, sugar and eggs.",
+        "Add the melted chocolate.",
+        "Add cream.",
+        "Bake and chill."
+    ]
+},
+
+
+/* 20 */
+
+{
+    name: "Tiramisu",
+    category: "International Desserts",
+    emoji: "☕",
+
+    ingredients: [
+        "mascarpone",
+        "ladyfingers",
+        "coffee",
+        "eggs",
+        "sugar",
+        "cocoa powder"
+    ],
+
+    steps: [
+        "Prepare the coffee.",
+        "Beat the eggs and sugar.",
+        "Mix in mascarpone.",
+        "Dip ladyfingers into coffee.",
+        "Layer ladyfingers and cream.",
+        "Dust the top with cocoa powder.",
+        "Chill before serving."
+    ]
+},
+
+
+/* 21 */
+
+{
+    name: "Panna Cotta",
+    category: "International Desserts",
+    emoji: "🥛",
+
+    ingredients: [
+        "cream",
+        "milk",
+        "sugar",
+        "vanilla",
+        "gelatin"
+    ],
+
+    steps: [
+        "Heat the milk and cream.",
+        "Add sugar.",
+        "Add vanilla.",
+        "Add gelatin and mix.",
+        "Pour into molds.",
+        "Refrigerate until set."
+    ]
+},
+
+
+/* 22 */
+
+{
+    name: "Chocolate Mousse",
+    category: "Chocolate Desserts",
+    emoji: "🍫",
+
+    ingredients: [
+        "dark chocolate",
+        "cream",
+        "sugar",
+        "vanilla"
+    ],
+
+    steps: [
+        "Melt the chocolate.",
+        "Whip the cream.",
+        "Gently fold the chocolate into the cream.",
+        "Add vanilla.",
+        "Chill before serving."
+    ]
+},
+
+
+/* 23 */
+
+{
+    name: "Crème Brûlée",
+    category: "International Desserts",
+    emoji: "🍮",
+
+    ingredients: [
+        "cream",
+        "egg yolks",
+        "sugar",
+        "vanilla"
+    ],
+
+    steps: [
+        "Heat the cream with vanilla.",
+        "Whisk egg yolks and sugar.",
+        "Slowly add the warm cream.",
+        "Pour into ramekins.",
+        "Bake in a water bath.",
+        "Sprinkle sugar on top and caramelize."
+    ]
+},
+
+
+/* 24 */
+
+{
+    name: "Pancakes",
+    category: "Cakes",
+    emoji: "🥞",
+
+    ingredients: [
+        "flour",
+        "egg",
+        "milk",
+        "sugar",
+        "baking powder",
+        "butter"
+    ],
+
+    steps: [
+        "Mix the egg and milk.",
+        "Add flour, sugar and baking powder.",
+        "Mix into a smooth batter.",
+        "Cook small pancakes in a pan.",
+        "Serve with fruit, honey or chocolate."
+    ]
+},
+
+
+/* 25 */
+
+{
+    name: "Belgian Waffles",
+    category: "International Desserts",
+    emoji: "🧇",
+
+    ingredients: [
+        "flour",
+        "eggs",
+        "milk",
+        "sugar",
+        "butter",
+        "baking powder"
+    ],
+
+    steps: [
+        "Beat eggs and sugar.",
+        "Add milk and melted butter.",
+        "Add flour and baking powder.",
+        "Cook in a waffle maker.",
+        "Serve with fruit and chocolate."
+    ]
+},
+
+
+/* 26 */
+
+{
+    name: "Chocolate Pudding",
+    category: "Chocolate Desserts",
+    emoji: "🍫",
+
+    ingredients: [
+        "milk",
+        "sugar",
+        "cocoa powder",
+        "cornstarch",
+        "chocolate",
+        "vanilla"
+    ],
+
+    steps: [
+        "Mix milk, sugar, cocoa and cornstarch.",
+        "Cook until thick.",
+        "Add chocolate.",
+        "Add vanilla.",
+        "Pour into bowls and chill."
+    ]
+},
+
+
+/* 27 */
+
+{
+    name: "Supangle",
+    category: "Chocolate Desserts",
+    emoji: "🍫",
+
+    ingredients: [
+        "milk",
+        "sugar",
+        "cocoa powder",
+        "flour",
+        "chocolate",
+        "butter"
+    ],
+
+    steps: [
+        "Mix milk, cocoa, sugar and flour.",
+        "Cook until thick.",
+        "Add chocolate.",
+        "Add butter.",
+        "Pour into serving bowls.",
+        "Chill before serving."
+    ]
+},
+
+
+/* 28 */
+
+{
+    name: "Banana Pudding",
+    category: "Milk Desserts",
+    emoji: "🍌",
+
+    ingredients: [
+        "banana",
+        "milk",
+        "sugar",
+        "flour",
+        "cornstarch",
+        "vanilla"
+    ],
+
+    steps: [
+        "Mix milk, sugar, flour and cornstarch.",
+        "Cook until thick.",
+        "Add vanilla.",
+        "Slice the bananas.",
+        "Layer pudding and bananas in glasses."
+    ]
+},
+
+
+/* 29 */
+
+{
+    name: "Apple Crumble",
+    category: "International Desserts",
+    emoji: "🍎",
+
+    ingredients: [
+        "apples",
+        "flour",
+        "oats",
+        "butter",
+        "sugar",
+        "cinnamon"
+    ],
+
+    steps: [
+        "Slice the apples.",
+        "Mix them with sugar and cinnamon.",
+        "Combine flour, oats, butter and sugar.",
+        "Sprinkle the crumble mixture over the apples.",
+        "Bake until golden."
+    ]
+},
+
+
+/* 30 */
+
+{
+    name: "Apple Pie",
+    category: "International Desserts",
+    emoji: "🥧",
+
+    ingredients: [
+        "apples",
+        "flour",
+        "butter",
+        "sugar",
+        "cinnamon",
+        "egg"
+    ],
+
+    steps: [
+        "Prepare the dough with flour, butter and egg.",
+        "Cook the apples with sugar and cinnamon.",
+        "Place dough into a pie pan.",
+        "Add the apple filling.",
+        "Cover with dough.",
+        "Bake until golden."
+    ]
+},
+
+
+/* 31 */
+
+{
+    name: "Banana Bread",
+    category: "Cakes",
+    emoji: "🍌",
+
+    ingredients: [
+        "bananas",
+        "flour",
+        "eggs",
+        "sugar",
+        "butter",
+        "baking powder"
+    ],
+
+    steps: [
+        "Mash the bananas.",
+        "Add eggs and sugar.",
+        "Add melted butter.",
+        "Add flour and baking powder.",
+        "Pour into a loaf pan.",
+        "Bake until golden."
+    ]
+},
+
+
+/* 32 */
+
+{
+    name: "Carrot Cake",
+    category: "Cakes",
+    emoji: "🥕",
+
+    ingredients: [
+        "flour",
+        "eggs",
+        "sugar",
+        "carrots",
+        "cinnamon",
+        "walnuts",
+        "vegetable oil"
+    ],
+
+    steps: [
+        "Beat eggs and sugar.",
+        "Add grated carrots.",
+        "Add walnuts and cinnamon.",
+        "Add flour and baking powder.",
+        "Pour into a cake pan.",
+        "Bake until done."
+    ]
+},
+
+
+/* 33 */
+
+{
+    name: "Lemon Cake",
+    category: "Cakes",
+    emoji: "🍋",
+
+    ingredients: [
+        "flour",
+        "eggs",
+        "sugar",
+        "lemon",
+        "butter",
+        "milk",
+        "baking powder"
+    ],
+
+    steps: [
+        "Beat eggs and sugar.",
+        "Add lemon juice and zest.",
+        "Add milk and butter.",
+        "Add flour and baking powder.",
+        "Bake until golden."
+    ]
+},
+
+
+/* 34 */
+
+{
+    name: "Muffins",
+    category: "Cakes",
+    emoji: "🧁",
+
+    ingredients: [
+        "flour",
+        "eggs",
+        "milk",
+        "sugar",
+        "butter",
+        "baking powder"
+    ],
+
+    steps: [
+        "Mix the dry ingredients.",
+        "Mix eggs, milk and melted butter.",
+        "Combine wet and dry ingredients.",
+        "Fill muffin cups.",
+        "Bake until golden."
+    ]
+},
+
+
+/* 35 */
+
+{
+    name: "Chocolate Muffins",
+    category: "Chocolate Desserts",
+    emoji: "🧁",
+
+    ingredients: [
+        "flour",
+        "cocoa powder",
+        "eggs",
+        "milk",
+        "sugar",
+        "butter",
+        "chocolate chips"
+    ],
+
+    steps: [
+        "Mix flour and cocoa powder.",
+        "Add eggs, milk and butter.",
+        "Add sugar.",
+        "Fold in chocolate chips.",
+        "Fill muffin cups.",
+        "Bake until cooked."
+    ]
+},
+
+
+/* 36 */
+
+{
+    name: "Coconut Cookies",
+    category: "Cookies",
+    emoji: "🥥",
+
+    ingredients: [
+        "coconut",
+        "eggs",
+        "sugar",
+        "flour",
+        "butter"
+    ],
+
+    steps: [
+        "Beat eggs and sugar.",
+        "Add coconut and flour.",
+        "Add butter.",
+        "Shape into small cookies.",
+        "Bake until golden."
+    ]
+},
+
+
+/* 37 */
+
+{
+    name: "Cinnamon Cookies",
+    category: "Cookies",
+    emoji: "🍪",
+
+    ingredients: [
+        "flour",
+        "butter",
+        "sugar",
+        "egg",
+        "cinnamon",
+        "baking powder"
+    ],
+
+    steps: [
+        "Mix butter and sugar.",
+        "Add the egg.",
+        "Add flour, cinnamon and baking powder.",
+        "Shape the cookies.",
+        "Bake until golden."
+    ]
+},
+
+
+/* 38 */
+
+{
+    name: "Chocolate Truffles",
+    category: "Chocolate Desserts",
+    emoji: "🍫",
+
+    ingredients: [
+        "dark chocolate",
+        "cream",
+        "butter",
+        "cocoa powder"
+    ],
+
+    steps: [
+        "Melt the chocolate with cream.",
+        "Add butter.",
+        "Chill until firm.",
+        "Shape into small balls.",
+        "Roll in cocoa powder."
+    ]
+},
+
+
+/* 39 */
+
+{
+    name: "Chocolate Coconut Balls",
+    category: "Chocolate Desserts",
+    emoji: "🥥",
+
+    ingredients: [
+        "biscuits",
+        "chocolate",
+        "milk",
+        "butter",
+        "cocoa powder",
+        "coconut"
+    ],
+
+    steps: [
+        "Crush the biscuits.",
+        "Melt the chocolate and butter.",
+        "Add milk and cocoa powder.",
+        "Mix with the biscuits.",
+        "Shape into balls.",
+        "Roll in coconut."
+    ]
+},
+
+
+/* 40 */
+
+{
+    name: "Fruit Parfait",
+    category: "Milk Desserts",
+    emoji: "🍓",
+
+    ingredients: [
+        "yogurt",
+        "honey",
+        "strawberries",
+        "banana",
+        "oats"
+    ],
+
+    steps: [
+        "Mix yogurt and honey.",
+        "Slice the fruit.",
+        "Add oats.",
+        "Layer yogurt, fruit and oats.",
+        "Chill before serving."
+    ]
+},
+
+
+/* 41 */
+
+{
+    name: "Strawberry Yogurt Dessert",
+    category: "Milk Desserts",
+    emoji: "🍓",
+
+    ingredients: [
+        "yogurt",
+        "honey",
+        "strawberries",
+        "vanilla"
+    ],
+
+    steps: [
+        "Mix yogurt with honey and vanilla.",
+        "Slice the strawberries.",
+        "Layer yogurt and strawberries.",
+        "Chill before serving."
+    ]
+},
+
+
+/* 42 */
+
+{
+    name: "Banana Smoothie Bowl",
+    category: "Milk Desserts",
+    emoji: "🍌",
+
+    ingredients: [
+        "banana",
+        "yogurt",
+        "honey",
+        "oats",
+        "strawberries"
+    ],
+
+    steps: [
+        "Blend banana and yogurt.",
+        "Add honey.",
+        "Pour into a bowl.",
+        "Top with oats and strawberries."
+    ]
+},
+
+
+/* 43 */
+
+{
+    name: "Semolina Halva",
+    category: "Turkish Desserts",
+    emoji: "🍯",
+
+    ingredients: [
+        "semolina",
+        "butter",
+        "sugar",
+        "milk",
+        "pine nuts"
+    ],
+
+    steps: [
+        "Melt the butter.",
+        "Add pine nuts.",
+        "Add semolina and toast it.",
+        "Add milk and sugar.",
+        "Cook until the liquid is absorbed.",
+        "Rest before serving."
+    ]
+},
+
+
+/* 44 */
+
+{
+    name: "Flour Halva",
+    category: "Turkish Desserts",
+    emoji: "🍯",
+
+    ingredients: [
+        "flour",
+        "butter",
+        "sugar",
+        "milk"
+    ],
+
+    steps: [
+        "Melt the butter.",
+        "Add flour and toast it.",
+        "Add milk and sugar.",
+        "Stir until thick.",
+        "Rest before serving."
+    ]
+},
+
+
+/* 45 */
+
+{
+    name: "Lokma",
+    category: "Turkish Desserts",
+    emoji: "🍩",
+
+    ingredients: [
+        "flour",
+        "yeast",
+        "sugar",
+        "water",
+        "oil",
+        "lemon"
+    ],
+
+    steps: [
+        "Prepare a soft dough with flour, yeast and water.",
+        "Let the dough rise.",
+        "Fry small pieces in hot oil.",
+        "Dip them into syrup.",
+        "Serve with cinnamon or walnuts."
+    ]
+},
+
+
+/* 46 */
+
+{
+    name: "Tulumba",
+    category: "Turkish Desserts",
+    emoji: "🍩",
+
+    ingredients: [
+        "flour",
+        "eggs",
+        "butter",
+        "cornstarch",
+        "sugar",
+        "water",
+        "lemon"
+    ],
+
+    steps: [
+        "Boil water and butter.",
+        "Add flour and cornstarch.",
+        "Add the eggs.",
+        "Pipe the dough into hot oil.",
+        "Fry until golden.",
+        "Dip into syrup."
+    ]
+},
+
+
+/* 47 */
+
+{
+    name: "Donuts",
+    category: "International Desserts",
+    emoji: "🍩",
+
+    ingredients: [
+        "flour",
+        "yeast",
+        "milk",
+        "sugar",
+        "egg",
+        "butter"
+    ],
+
+    steps: [
+        "Prepare a soft dough.",
+        "Let the dough rise.",
+        "Cut into donut shapes.",
+        "Fry until golden.",
+        "Decorate with chocolate or icing."
+    ]
+},
+
+
+/* 48 */
+
+{
+    name: "Chocolate Rice Pudding",
+    category: "Chocolate Desserts",
+    emoji: "🍫",
+
+    ingredients: [
+        "rice",
+        "milk",
+        "sugar",
+        "cocoa powder",
+        "chocolate"
+    ],
+
+    steps: [
+        "Cook the rice until soft.",
+        "Add milk.",
+        "Add sugar and cocoa powder.",
+        "Add chocolate.",
+        "Cook until creamy.",
+        "Chill before serving."
+    ]
+},
+
+
+/* 49 */
+
+{
+    name: "Honey Yogurt Dessert",
+    category: "Milk Desserts",
+    emoji: "🍯",
+
+    ingredients: [
+        "yogurt",
+        "honey",
+        "walnuts",
+        "cinnamon",
+        "banana"
+    ],
+
+    steps: [
+        "Place yogurt in a bowl.",
+        "Add honey.",
+        "Slice the banana.",
+        "Add walnuts.",
+        "Sprinkle with cinnamon.",
+        "Serve chilled."
+    ]
+},
+
+
+/* 50 */
+
+{
+    name: "Chocolate Waffles",
+    category: "Chocolate Desserts",
+    emoji: "🧇",
+
+    ingredients: [
+        "flour",
+        "eggs",
+        "milk",
+        "sugar",
+        "cocoa powder",
+        "butter"
+    ],
+
+    steps: [
+        "Beat the eggs and sugar.",
+        "Add milk and melted butter.",
+        "Add flour and cocoa powder.",
+        "Mix until smooth.",
+        "Cook in a waffle maker.",
+        "Serve with chocolate and fruit."
+    ]
+}
+
+];
+
+
+
+/* ======================================================
+   VARIABLES
+====================================================== */
+
+let currentCategory = "All";
+
+
+
+/* ======================================================
+   NORMALIZE INGREDIENT
+====================================================== */
+
+function normalize(text) {
+
+    return text
+        .toLowerCase()
+        .trim()
+        .replace(/\s+/g, " ");
+
+}
+
+
+
+/* ======================================================
+   DISPLAY RECIPES
+====================================================== */
+
+function displayRecipes(
+    recipeList,
+    userIngredients = []
+) {
+
+    const results =
+        document.getElementById("results");
+
+    results.innerHTML = "";
+
+
+    document.getElementById(
+        "recipeCount"
+    ).textContent =
+        recipeList.length + " desserts";
+
+
+    if (recipeList.length === 0) {
+
+        results.innerHTML = `
+
+            <div class="empty">
+
+                <div class="big">
+                    😕
+                </div>
+
+                <h3>
+                    No matching desserts found.
+                </h3>
+
+                <p>
+                    Try adding more ingredients
+                    to your kitchen list.
+                </p>
+
+            </div>
+
+        `;
+
+        return;
+    }
+
+
+    recipeList.forEach(recipe => {
+
+
+        const matched =
+            recipe.ingredients.filter(
+                ingredient =>
+
+                userIngredients.some(
+                    user =>
+
+                    normalize(ingredient)
+                        .includes(user)
+
+                    ||
+
+                    user.includes(
+                        normalize(ingredient)
+                    )
+
+                )
+            );
+
+
+        const missing =
+            recipe.ingredients.filter(
+                ingredient =>
+
+                !userIngredients.some(
+                    user =>
+
+                    normalize(ingredient)
+                        .includes(user)
+
+                    ||
+
+                    user.includes(
+                        normalize(ingredient)
+                    )
+
+                )
+            );
+
+
+        const card =
+            document.createElement("div");
+
+
+        card.className =
+            "recipe-card";
+
+
+        card.innerHTML = `
+
+            <div class="recipe-image">
+
+                ${recipe.emoji}
+
+            </div>
+
+
+            <div class="recipe-content">
+
+
+                <span class="category-label">
+
+                    ${recipe.category}
+
+                </span>
+
+
+                <h3>
+
+                    ${recipe.name}
+
+                </h3>
+
+
+                ${
+                    userIngredients.length > 0
+                    ?
+
+                    `
+
+                    <div class="match">
+
+                        ✅ ${matched.length}
+                        /
+                        ${recipe.ingredients.length}
+                        ingredients available
+
+                    </div>
+
+                    `
+
+                    :
+
+                    ""
+
+                }
+
+
+                ${
+                    userIngredients.length > 0
+                    &&
+                    missing.length > 0
+
+                    ?
+
+                    `
+
+                    <div class="missing">
+
+                        🛒 Missing:
+                        ${missing.join(", ")}
+
+                    </div>
+
+                    `
+
+                    :
+
+                    ""
+
+                }
+
+
+                <h4>
+                    🥣 Ingredients
+                </h4>
+
+
+                <ul>
+
+                    ${
+                        recipe.ingredients
+                        .map(
+                            ingredient =>
+                            `<li>${ingredient}</li>`
+                        )
+                        .join("")
+                    }
+
+                </ul>
+
+
+                <h4>
+                    👨‍🍳 Instructions
+                </h4>
+
+
+                <ol>
+
+                    ${
+                        recipe.steps
+                        .map(
+                            step =>
+                            `<li>${step}</li>`
+                        )
+                        .join("")
+                    }
+
+                </ol>
+
+
+            </div>
+
+        `;
+
+
+        results.appendChild(card);
+
+    });
+
+}
+
+
+
+/* ======================================================
+   FIND DESSERTS
+====================================================== */
+
+function findDesserts() {
+
+
+    const input =
+        document.getElementById(
+            "ingredientInput"
+        ).value;
+
+
+    const userIngredients =
+
+        input
+        .split(",")
+        .map(normalize)
+        .filter(Boolean);
+
+
+    const onlyComplete =
+        document.getElementById(
+            "onlyComplete"
+        ).checked;
+
+
+    let results =
+
+
+        desserts.map(recipe => {
+
+
+            const matched =
+
+                recipe.ingredients.filter(
+                    ingredient =>
+
+                    userIngredients.some(
+                        user =>
+
+                        normalize(ingredient)
+                            .includes(user)
+
+                        ||
+
+                        user.includes(
+                            normalize(ingredient)
+                        )
+
+                    )
+                );
+
+
+            return {
+
+                recipe: recipe,
+
+                matchCount:
+                    matched.length,
+
+                percentage:
+
+                    Math.round(
+
+                        matched.length
+                        /
+                        recipe.ingredients.length
+                        *
+                        100
+
+                    )
+
+            };
+
+
+        });
+
+
+    if (onlyComplete) {
+
+
+        results =
+
+            results.filter(item =>
+
+                item.matchCount ===
+                item.recipe.ingredients.length
+
+            );
+
+
+    } else {
+
+
+        results =
+
+            results.filter(item =>
+
+                item.matchCount > 0
+
+            );
+
+    }
+
+
+    results.sort(
+
+        (a, b) =>
+
+        b.percentage -
+        a.percentage
+
+    );
+
+
+    const finalRecipes =
+
+        results.map(
+            item => item.recipe
+        );
+
+
+    document.getElementById(
+        "resultsTitle"
+    ).textContent =
+
+        onlyComplete
+
+        ?
+
+        "🍰 Desserts You Can Make"
+
+        :
+
+        "🍰 Desserts Based on Your Ingredients";
+
+
+    displayRecipes(
+
+        finalRecipes,
+
+        userIngredients
+
+    );
+
+}
+
+
+
+/* ======================================================
+   CATEGORY FILTER
+====================================================== */
+
+function filterCategory(
+    category,
+    button
+) {
+
+
+    currentCategory =
+        category;
+
+
+    document
+        .querySelectorAll(
+            ".category-btn"
+        )
+        .forEach(btn =>
+
+            btn.classList.remove(
+                "active"
+            )
+
+        );
+
+
+    button.classList.add(
+        "active"
+    );
+
+
+    let filtered;
+
+
+    if (category === "All") {
+
+        filtered = desserts;
+
+    } else {
+
+        filtered =
+
+            desserts.filter(
+                recipe =>
+
+                recipe.category ===
+                category
+
+            );
+
+    }
+
+
+    document.getElementById(
+        "resultsTitle"
+    ).textContent =
+
+        category === "All"
+
+        ?
+
+        "🍰 Dessert Menu"
+
+        :
+
+        "🍰 " + category;
+
+
+    displayRecipes(
+        filtered
+    );
+
+}
+
+
+
+/* ======================================================
+   CLEAR SEARCH
+====================================================== */
+
+function clearSearch() {
+
+
+    document.getElementById(
+        "ingredientInput"
+    ).value = "";
+
+
+    document.getElementById(
+        "onlyComplete"
+    ).checked = false;
+
+
+    currentCategory =
+        "All";
+
+
+    document
+        .querySelectorAll(
+            ".category-btn"
+        )
+        .forEach(btn =>
+
+            btn.classList.remove(
+                "active"
+            )
+
+        );
+
+
+    document
+        .querySelector(
+            ".category-btn"
+        )
+        .classList.add(
+            "active"
+        );
+
+
+    document.getElementById(
+        "resultsTitle"
+    ).textContent =
+        "🍰 Dessert Menu";
+
+
+    displayRecipes(
+        desserts
+    );
+
+}
+
+
+
+/* ======================================================
+   START WEBSITE
+====================================================== */
+
+displayRecipes(
+    desserts
+);
+
+</script>
+
+</body>
+
+</html>
+```
