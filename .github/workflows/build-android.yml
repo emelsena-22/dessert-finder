@@ -36,7 +36,8 @@ jobs:
           ANDROID_HOME: /usr/local/lib/android/sdk
         run: |
           mkdir build-twa && cd build-twa
-          bubblewrap init --manifest="https://emelsena-22.github.io/dessert-finder/manifest.json" --skip-validation
+          # Otomatik olarak 'No' yanıtını vererek interaktif soruyu geçiyoruz
+          printf "n\n" | bubblewrap init --manifest="https://emelsena-22.github.io/dessert-finder/manifest.json"
           bubblewrap build
 
       - name: Upload APK Artifact
