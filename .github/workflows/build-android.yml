@@ -1,0 +1,44 @@
+name: Android Uygulamasi Oluştur
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build-apk:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Kodları Çek
+        uses: actions/checkout@v4
+
+      - name: Node.js Kur
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Java JDK 17 Kur
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Android SDK Kur
+        uses: android-actions/setup-android@v3
+
+      - name: Bubblewrap CLI Yükle
+        run: npm install -g @bubblewrap/cli
+
+      - name: APK Derle
+        run: |
+          mkdir build-twa && cd build-twa
+          bubblewrap init --manifest="https://emelsena-22.github.io/dessert-finder/manifest.json"
+          bubblewrap build
+
+      - name: APK Dosyasını Yükle
+        uses: actions/upload-artifact@v4
+        with:
+          name: Dessert-Finder-APK
+          path: build-twa/*.apk
