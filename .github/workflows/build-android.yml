@@ -29,8 +29,8 @@ jobs:
         run: |
           npm install -g @bubblewrap/cli
           
-          # Doğrudan TWA projesini otomatik ayarlar ve sorulara takılmadan geçer
-          bubblewrap init --manifest=https://emelsena-22.github.io/dessert-finder/manifest.json --directory=twa --skip-validation --name=DessertFinder --package-name=com.emelsena.dessertfinder --theme-color=#ff4081 --background-color=#ffffff --start-url=/dessert-finder/
+          # Otomatik olarak 'No' yanıtını göndererek soruyu geçiyoruz
+          echo "n" | bubblewrap init --manifest=https://emelsena-22.github.io/dessert-finder/manifest.json --directory=twa --skip-validation --name=DessertFinder --package-name=com.emelsena.dessertfinder --theme-color=#ff4081 --background-color=#ffffff --start-url=/dessert-finder/
           
           cd twa
           bubblewrap build
