@@ -1,0 +1,16 @@
+{
+  "name": "Dessert Finder",
+  "short_name": "DessertFinder",
+  "start_url": "/dessert-finder/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#ff4081",
+  "icons": [
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
