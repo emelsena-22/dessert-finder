@@ -25,23 +25,18 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
-      - name: Install and Setup Bubblewrap
+      - name: Install Bubblewrap & Build
         run: |
           npm install -g @bubblewrap/cli
-          export ANDROID_HOME=$HOME/android-sdk
-          mkdir -p $ANDROID_HOME
           
-      - name: Build APK
-        env:
-          ANDROID_HOME: /usr/local/lib/android/sdk
-        run: |
-          mkdir build-twa && cd build-twa
-          # Otomatik olarak 'No' yanıtını vererek interaktif soruyu geçiyoruz
-          printf "n\n" | bubblewrap init --manifest="https://emelsena-22.github.io/dessert-finder/manifest.json"
+          # Doğrudan TWA projesini otomatik ayarlar ve sorulara takılmadan geçer
+          bubblewrap init --manifest=https://emelsena-22.github.io/dessert-finder/manifest.json --directory=twa --skip-validation --name=DessertFinder --package-name=com.emelsena.dessertfinder --theme-color=#ff4081 --background-color=#ffffff --start-url=/dessert-finder/
+          
+          cd twa
           bubblewrap build
 
       - name: Upload APK Artifact
         uses: actions/upload-artifact@v4
         with:
           name: Dessert-Finder-APK
-          path: build-twa/*.apk
+          path: twa/*.apk
